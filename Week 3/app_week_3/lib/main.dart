@@ -65,9 +65,15 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
 
+  @override
+  State<SecondScreen> createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  bool _showModifiedContainer = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,27 +81,45 @@ class SecondScreen extends StatelessWidget {
       body: PageView.builder(
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return Panel(index: index);
+            return Panel(
+                index: index, showModifiedContainer: _showModifiedContainer);
           }),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.gradient),
+          onPressed: () => setState(
+                () => (_showModifiedContainer = !_showModifiedContainer),
+              )),
     );
   }
 }
 
 class Panel extends StatelessWidget {
   final int index;
-  const Panel({super.key, required this.index});
+  final bool showModifiedContainer;
+
+  const Panel({
+    super.key,
+    required this.index,
+    required this.showModifiedContainer,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 400),
       margin: const EdgeInsets.all(40.0),
       decoration: BoxDecoration(
           color: Colors.purple,
-          borderRadius: BorderRadius.circular(40.0),
+          borderRadius:
+              showModifiedContainer ? BorderRadius.circular(40.0) : null,
           boxShadow: const [
             BoxShadow(
                 color: Colors.black45, offset: Offset(0, 6), blurRadius: 12.0)
-          ]),
+          ],
+          image: const DecorationImage(
+              image: NetworkImage(
+                  "https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/w/o/WOPA160517_D056-resized.jpg?crop=864%2C0%2C1728%2C2304&wid=600&hei=800&scl=2.88"),
+              fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
