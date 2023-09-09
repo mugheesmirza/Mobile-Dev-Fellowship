@@ -10,3 +10,10 @@ This is my weekly task submission repo for the Mobile Dev fellowship by ACM UET 
 - Setup android emulator
 - Created first app
 - Build first app in android and chrome
+
+
+## Week 3
+- Learned about the basics of widgets
+- Learned a bunch of important widget that are commonly used
+- Learned about the usage of multiple types of assets
+
