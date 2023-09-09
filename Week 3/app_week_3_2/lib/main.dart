@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title:  Text('app_week_3_2'),
+          title: const Text('app_week_3_2'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
 
             Expanded(
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: 5,
                 itemBuilder: (context , index){
                   return const  ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.black,
-                      backgroundImage: NetworkImage('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg'),
+                      backgroundImage: AssetImage('assets/mughees.jpg'),
                     ),
                     title: Text('Mughees Mirza'),
                     subtitle: Text('Hi there! How are you'),
